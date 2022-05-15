@@ -29,6 +29,29 @@ function doManualTests<P>(newGroup: GroupFactory<P>) {
         }
         assertIsOrdered(alice, list);
       });
+
+      it("RTL", () => {
+        let last: P | undefined = undefined;
+        const list: P[] = [];
+        for (let i = 0; i < 20; i++) {
+          last = safeCreateBetween(alice, undefined, last);
+          list.unshift(last);
+        }
+        assertIsOrdered(alice, list);
+      });
+
+      it("restart", () => {
+        const list: P[] = [];
+        for (let j = 0; j < 5; j++) {
+          let last: P | undefined = undefined;
+          let after = j === 0 ? undefined : list[0];
+          for (let i = 0; i < 10; i++) {
+            last = safeCreateBetween(alice, last, after);
+            list.splice(i, 0, last);
+          }
+        }
+        assertIsOrdered(alice, list);
+      });
     });
   });
 }
