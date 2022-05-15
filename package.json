@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "chai": "^4.3.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "^10.0.0",
+    "npm-run-all": "^4.1.5",
+    "pkg-ok": "^3.0.0",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm-run-all test:*",
+    "test:lint": "eslint --ext .ts,.js .",
+    "test:unit": "cross-env TS_NODE_PROJECT='./tsconfig.commonjs.json' TS_NODE_SCOPE=true mocha",
+    "test:pkg": "pkg-ok",
+    "test:format": "prettier --check .",
+    "fix": "npm-run-all fix:*",
+    "fix:format": "prettier --write .",
+    "clean": "rimraf build"
+  }
+}
