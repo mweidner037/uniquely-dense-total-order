@@ -20,6 +20,6 @@ export class StringOneLine extends StringDenseTotalOrder {
     a: string = StringOneLine.FIRST,
     b: string = StringOneLine.LAST
   ): string {
-    return (b.startsWith(a) ? b.slice(0, -1) + "L" : b) + this.replicaID + "R";
+    return (b.startsWith(a) ? b.slice(0, -1) + "L" : a) + this.replicaID + "R";
   }
 }

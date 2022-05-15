@@ -1,0 +1,14 @@
+{
+  /* I put this file here instead of in the root dir with
+   * a special name, beacuse otherwise I cannot figure out
+   * how to get atom-typescript to recognize any settings
+   * for the test/ folder.
+   * See https://github.com/TypeStrong/atom-typescript/issues/1250
+   */
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "module": "commonjs"
+  },
+  "include": ["../src", "../test"]
+}

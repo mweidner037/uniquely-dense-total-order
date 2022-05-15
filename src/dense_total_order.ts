@@ -1,7 +1,7 @@
 /**
  * @type P The type of positions (total order elements).
  * For compatibility with [[createBetween]], must not include
- * null.
+ * undefined.
  */
 export interface DenseTotalOrder<P> {
   /**
