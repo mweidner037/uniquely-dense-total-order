@@ -4,8 +4,9 @@ function lexInc(str: string): string {
   const n = Number.parseInt(str);
   const d = str.length;
   if (n === Math.pow(10, d) - Math.pow(9, d) - 1) {
-    return `${n + 1}0`;
-  } else return `${n + 1}`;
+    // (n + 1) * 10
+    return (n + 1).toString() + "0";
+  } else return (n + 1).toString();
 }
 
 /**
@@ -39,7 +40,7 @@ export class StringOptimized extends StringDenseTotalOrder {
   createBetween(a: string | undefined, b: string | undefined): string {
     if (b !== undefined && (a === undefined || b.startsWith(a))) {
       // Left child of b.
-      return `${b.slice(0, -1)}L${this.newWaypointNode()}`;
+      return b.slice(0, -1) + "L" + this.newWaypointNode();
     } else {
       // Right child of a.
       if (a === undefined) return this.newWaypointNode();
@@ -64,11 +65,11 @@ export class StringOptimized extends StringDenseTotalOrder {
             // Success; reuse a's leaf waypoint.
             const valueIndex = lexInc(leafValueIndex);
             this.lastValueIndices[leafCounter] = valueIndex;
-            return `${a.slice(0, lastComma + 1)}${valueIndex}R`;
+            return a.slice(0, lastComma + 1) + valueIndex + "R";
           }
         }
         // Failure; cannot reuse a's leaf waypoint.
-        return `${a}${this.newWaypointNode()}`;
+        return a + this.newWaypointNode();
       }
     }
   }

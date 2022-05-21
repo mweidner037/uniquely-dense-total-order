@@ -30,10 +30,10 @@ export class StringSimple extends StringDenseTotalOrder {
 
     if (b !== undefined && (a === undefined || b.startsWith(a))) {
       // Left child of b.
-      return `${b.slice(0, -1)}L${newNode}`;
+      return b.slice(0, -1) + "L" + newNode;
     } else {
       // Right child of a.
-      return `${a ?? ""}${newNode}`;
+      return (a ?? "") + newNode;
     }
   }
 }
