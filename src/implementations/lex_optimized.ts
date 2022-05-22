@@ -1,8 +1,8 @@
 import { LexDenseTotalOrder } from "../lex_dense_total_order";
 
 /**
- * Returns the successor of n in a specific enumeration
- * of numbers.
+ * Returns the successor of n in an enumeration of a special
+ * set of numbers.
  *
  * That enumeration has the following properties:
  * 1. Each number is a nonnegative integer (however, not all
@@ -16,7 +16,8 @@ import { LexDenseTotalOrder } from "../lex_dense_total_order";
  * with the usual order by magnitude; the novelty here is that
  * we instead use the lexicographic order on decimal representations.
  * It is also the case that
- * the numbers are in order by magnitude.
+ * the numbers are in order by magnitude, although we do not
+ * use this property.
  *
  * The specific enumeration is:
  * - Start with 0.

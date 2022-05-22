@@ -1,4 +1,5 @@
 {
+  "name": "dense-total-order",
   "dependencies": {
     "seedrandom": "^3.0.5",
     "tslib": "^2.4.0"
@@ -20,10 +21,13 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
+    "typedoc": "^0.22.15",
     "typescript": "^4.6.4"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "npm-run-all build:*",
+    "build:tsc": "tsc -p tsconfig.json",
+    "build:docs": "typedoc --out typedoc src/index.ts --tsconfig tsconfig.json",
     "test": "npm-run-all test:*",
     "test:lint": "eslint --ext .ts,.js .",
     "test:unit": "cross-env TS_NODE_PROJECT='./test/tsconfig.json' TS_NODE_SCOPE=true mocha",

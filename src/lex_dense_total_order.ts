@@ -5,7 +5,8 @@ import { DenseTotalOrder } from "./dense_total_order";
  * order on strings.
  *
  * This is useful in contexts where you can't specify a
- * custom [[compare]] function. However, it comes at the cost
+ * custom [[compare]] function for sorts (e.g., a column
+ * in a database table). However, it comes at the cost
  * of super-constant size positions (both on the network
  * and in memory).
  */
