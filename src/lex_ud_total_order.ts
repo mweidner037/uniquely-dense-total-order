@@ -1,7 +1,7 @@
-import { DenseTotalOrder } from "./dense_total_order";
+import { UniquelyDenseTotalOrder } from "./uniquely_dense_total_order";
 
 /**
- * A [[DenseTotalOrder]] that sorts using the lexicographic
+ * A [[UniquelyDenseTotalOrder]] that sorts using the lexicographic
  * order on strings.
  *
  * This is useful in contexts where you can't specify a
@@ -10,7 +10,9 @@ import { DenseTotalOrder } from "./dense_total_order";
  * of super-constant size positions (both on the network
  * and in memory).
  */
-export abstract class LexDenseTotalOrder implements DenseTotalOrder<string> {
+export abstract class LexUDTotalOrder
+  implements UniquelyDenseTotalOrder<string>
+{
   compare(a: string, b: string): number {
     return a < b ? -1 : a === b ? 0 : 1;
   }

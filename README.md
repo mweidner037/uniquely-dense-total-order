@@ -1,13 +1,11 @@
-# Dense Total Order
+# Uniquely Dense Total Orders
 
-Interface and implementations for a **dense total order** abstract data type. This is a concept similar to fractional indexing, but resilient to concurrent insertions. A dense total order can be used as the core of a list/text CRDT (see [here](https://mattweidner.com/2022/02/10/collaborative-data-design.html#list-crdt)).
+Interface and implementations for a **uniquely dense total order** abstract data type. This is a concept similar to fractional indexing, but resilient to concurrent insertions. A uniquely dense total order can be used as the core of a list/text CRDT.
 
-For the definition of a dense total order, view the docs for `DenseTotalOrder` (either build them following the instructions below, or just look at `src/dense_total_order.ts`).
+This repo is a companion to the blog post [Plain Tree: A Basic List CRDT](https://mattweidner.com/2022/10/05/basic-list-crdt.html), which gives more info about the `UniquelyDenseTotalOrder` interface and the `PlainTree` implementations.
 
-**Caution**: I have only minimally tested these implementations.
+**Caution**: I have only minimally tested the implementations.
 
 ## Docs
 
-`npm i`, then `npm run build`, then open `typedoc/index.html`.
-
-The current implementations are all based on a list CRDT called Double RGA, which is described [here](https://docs.google.com/presentation/d/1u8bcvfEcJ2wseH3u4P8QAMabq5VZrPR-FX8VaIIkbFQ/edit?usp=sharing).
+Open [typedoc/index.html](tree/master/typedoc/index.html).

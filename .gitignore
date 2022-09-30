@@ -4,4 +4,3 @@
 *.tsbuildinfo
 node_modules
 build
-typedoc

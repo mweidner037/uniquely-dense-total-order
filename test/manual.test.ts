@@ -1,5 +1,5 @@
 import seedrandom from "seedrandom";
-import { DenseTotalOrder } from "../src/dense_total_order";
+import { UniquelyDenseTotalOrder } from "../src/uniquely_dense_total_order";
 import { assertIsOrdered, GroupFactory, safeCreateBetween } from "./utils";
 import { IMPLEMENTATIONS } from "./implementations";
 
@@ -13,7 +13,7 @@ function doManualTests<P>(newGroup: GroupFactory<P>) {
   describe("manual", () => {
     describe("single user", () => {
       let rng: seedrandom.PRNG;
-      let alice: DenseTotalOrder<P>;
+      let alice: UniquelyDenseTotalOrder<P>;
 
       beforeEach(() => {
         rng = seedrandom("42");

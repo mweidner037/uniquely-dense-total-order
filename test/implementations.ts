@@ -1,9 +1,16 @@
 import { GroupFactory } from "./utils";
 import { pseudoRandomReplicaID } from "../src/utils";
-import { LexOneLine, LexOptimized, LexSimple } from "../src/implementations";
+import {
+  GolfStringPlainTree,
+  OptStringPlainTree,
+  StringPlainTree,
+} from "../src/implementations";
 
 export const IMPLEMENTATIONS: { [name: string]: GroupFactory<unknown> } = {
-  LexOneLine: () => (rng) => new LexOneLine(pseudoRandomReplicaID(rng)),
-  LexOptimized: () => (rng) => new LexOptimized(pseudoRandomReplicaID(rng)),
-  LexSimple: () => (rng) => new LexSimple(pseudoRandomReplicaID(rng)),
+  GolfStringPlainTree: () => (rng) =>
+    new GolfStringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
+  OptStringPlainTree: () => (rng) =>
+    new OptStringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
+  LStringPlainTree: () => (rng) =>
+    new StringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
 } as const;

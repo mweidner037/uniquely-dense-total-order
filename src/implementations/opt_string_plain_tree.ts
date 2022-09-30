@@ -1,4 +1,5 @@
-import { LexDenseTotalOrder } from "../lex_dense_total_order";
+import { LexUDTotalOrder } from "../lex_ud_total_order";
+import { randomReplicaID } from "../utils";
 
 /**
  * Returns the successor of n in an enumeration of a special
@@ -41,11 +42,13 @@ function lexSucc(n: number): number {
 }
 
 /**
- * An optimized implementation of [[LexDenseTotalOrder]].
+ * An optimized version of [[StringPlainTree]].
  *
- * The underlying dense total order is similar to Double RGA,
- * and this implementation is similar to [[LexSimple]].
- * The difference is a common-case optimization: left-to-right insertions
+ * For a description of the algorithm, see
+ * [https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation](https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation)
+ *
+ * The difference from [[StringPlainTree]] (the linked algorithm)
+ * is a common-case optimization: left-to-right insertions
  * by the same replica reuse the same (replicaID, counter)
  * pair (we call this a _waypoint_), just using
  * an extra _valueIndex_ to distinguish positions
@@ -83,24 +86,27 @@ function lexSucc(n: number): number {
  * to ensure that a terminal node is sorted in between its
  * left and right children).
  */
-export class LexOptimized extends LexDenseTotalOrder {
+export class OptStringPlainTree extends LexUDTotalOrder {
+  /**
+   * Local replica ID, set in constructor.
+   * All replicaIDs have the same length.
+   */
+  readonly replicaID: string;
   /**
    * Maps counter to the most recently used
    * valueIndex for the waypoint (this.replicaID, counter).
    */
-  private lastValueIndices: number[];
+  private lastValueIndices: number[] = [];
 
   /**
-   * @param replicaID A unique ID for the current replica.
-   * All replicaID's must have the same length.
-   * @param saveData If replicaID was reused from a previous
-   * session, then this must equal the value of that session's
-   * ending [[save]]`()`.
+   * @param options replicaID: A unique replicaID. Must be unique among all
+   * collaborating replicas, including past or concurrent replicas for the
+   * same device or user. All collaborating replicas' replicaIDs must be the
+   * same length.
    */
-  constructor(readonly replicaID: string, saveData?: number[]) {
+  constructor(options: { replicaID?: string } = {}) {
     super();
-
-    this.lastValueIndices = saveData === undefined ? [] : saveData.slice();
+    this.replicaID = options.replicaID ?? randomReplicaID();
   }
 
   createBetween(a: string | undefined, b: string | undefined): string {
@@ -148,20 +154,5 @@ export class LexOptimized extends LexDenseTotalOrder {
     const counter = this.lastValueIndices.length;
     this.lastValueIndices.push(0);
     return `${this.replicaID},${counter},0R`;
-  }
-
-  /**
-   * Returns a dense array of nonnegative integers
-   * that must be saved and passed to
-   * the constructor if [[this.replicaID]] is reused
-   * in a later session.
-   *
-   * Specifically, the return value's i-th entry is the number of
-   * positions that [[createBetween]] has created for this
-   * [[replicaID]]'s i-th waypoint. Hence the return value
-   * can usually be represented as a uint32[].
-   */
-  save(): number[] {
-    return this.lastValueIndices.slice();
   }
 }

@@ -1,12 +1,14 @@
 import { assert } from "chai";
 import seedrandom from "seedrandom";
-import { DenseTotalOrder } from "../src/dense_total_order";
+import { UniquelyDenseTotalOrder } from "../src/uniquely_dense_total_order";
 
-export type ReplicaFactory<P> = (rng: seedrandom.PRNG) => DenseTotalOrder<P>;
+export type ReplicaFactory<P> = (
+  rng: seedrandom.PRNG
+) => UniquelyDenseTotalOrder<P>;
 export type GroupFactory<P> = () => ReplicaFactory<P>;
 
 export function safeCreateBetween<P>(
-  order: DenseTotalOrder<P>,
+  order: UniquelyDenseTotalOrder<P>,
   a: P | undefined,
   b: P | undefined
 ): P {
@@ -27,7 +29,10 @@ export function safeCreateBetween<P>(
   return c;
 }
 
-export function assertIsOrdered<P>(order: DenseTotalOrder<P>, list: P[]) {
+export function assertIsOrdered<P>(
+  order: UniquelyDenseTotalOrder<P>,
+  list: P[]
+) {
   for (let i = 0; i < list.length; i++) {
     for (let j = i + 1; j < list.length; j++) {
       assert.isBelow(order.compare(list[i], list[j]), 0);
