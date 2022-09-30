@@ -1,5 +1,9 @@
 {
-  "name": "dense-total-order",
+  "name": "uniquely-dense-total-order",
+  "description": "Uniquely Dense Total Orders for List/Text CRDTs",
+  "author": "Matthew Weidner",
+  "homepage": "https://github.com/mweidner037/uniquely-dense-total-order",
+  "license": "Apache 2.0",
   "dependencies": {
     "seedrandom": "^3.0.5",
     "tslib": "^2.4.0"
