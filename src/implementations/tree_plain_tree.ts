@@ -51,7 +51,7 @@ export class TreePlainTree implements UniquelyDenseTotalOrder<TreePosition> {
    * during a [[createBetween]] call, then other replicas must
    * [[receive]] the message before using the created position
    * (i.e., passing it to [[compare]] or [[createBetween]]).
-   * @param options replicaID: A unique replicaID. Must be unique among all
+   * @param options.replicaID A unique replicaID. Must be unique among all
    * collaborating replicas, including past or concurrent replicas for the
    * same device or user.
    */

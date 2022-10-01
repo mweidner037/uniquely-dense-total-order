@@ -17,7 +17,7 @@ export class GolfStringPlainTree extends LexUDTotalOrder {
   private c = 0;
 
   /**
-   * @param options replicaID: A unique replicaID. Must be unique among all
+   * @param options.replicaID A unique replicaID. Must be unique among all
    * collaborating replicas, including past or concurrent replicas for the
    * same device or user. All collaborating replicas' replicaIDs must be the
    * same length.

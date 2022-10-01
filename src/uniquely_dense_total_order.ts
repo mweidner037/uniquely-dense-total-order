@@ -2,7 +2,7 @@
  * Helper interface for sorting and creating unique immutable positions,
  * suitable for use in a List CRDT.
  *
- * @type P The type of positions. Treated as immutable.
+ * @typeParam P The type of positions. Treated as immutable.
  */
 export interface UniquelyDenseTotalOrder<P> {
   /**
