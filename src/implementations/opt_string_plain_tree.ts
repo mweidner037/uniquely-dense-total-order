@@ -2,46 +2,6 @@ import { LexUDTotalOrder } from "../lex_ud_total_order";
 import { randomReplicaID } from "../utils";
 
 /**
- * Returns the successor of n in an enumeration of a special
- * set of numbers.
- *
- * That enumeration has the following properties:
- * 1. Each number is a nonnegative integer (however, not all
- * nonnegative integers are enumerated).
- * 2. The number's decimal representations are enumerated in
- * lexicographic order, with no prefixes (i.e., no decimal
- * representation is a prefix of another).
- * 3. The n-th enumerated number has O(log(n)) decimal digits.
- *
- * Properties (2) and (3) are analogous to normal counting,
- * with the usual order by magnitude; the novelty here is that
- * we instead use the lexicographic order on decimal representations.
- * It is also the case that
- * the numbers are in order by magnitude, although we do not
- * use this property.
- *
- * The specific enumeration is:
- * - Start with 0.
- * - Enumerate 9^0 numbers (i.e., just 0).
- * - Add 1, multiply by 10, then enumerate 9^1 numbers (i.e.,
- * 10, 11, ..., 18).
- * - Add 1, multiply by 10, then enumerate 9^2 numbers (i.e.,
- * 190, 191, ..., 270).
- * - Repeat this pattern indefinitely, enumerating
- * 9^(d-1) d-digit numbers for each d >= 1.
- */
-function lexSucc(n: number): number {
-  const d = n === 0 ? 1 : Math.floor(Math.log10(n)) + 1;
-  if (n === Math.pow(10, d) - Math.pow(9, d) - 1) {
-    // n -> (n + 1) * 10
-    return (n + 1) * 10;
-  } else {
-    // n -> n + 1
-    return n + 1;
-  }
-}
-
-/**
  * An optimized version of [[StringPlainTree]].
  *
  * For a description of the algorithm, see
@@ -154,5 +114,45 @@ export class OptStringPlainTree extends LexUDTotalOrder {
     const counter = this.lastValueIndices.length;
     this.lastValueIndices.push(0);
     return `${this.replicaID},${counter},0R`;
+  }
+}
+
+/**
+ * Returns the successor of n in an enumeration of a special
+ * set of numbers.
+ *
+ * That enumeration has the following properties:
+ * 1. Each number is a nonnegative integer (however, not all
+ * nonnegative integers are enumerated).
+ * 2. The number's decimal representations are enumerated in
+ * lexicographic order, with no prefixes (i.e., no decimal
+ * representation is a prefix of another).
+ * 3. The n-th enumerated number has O(log(n)) decimal digits.
+ *
+ * Properties (2) and (3) are analogous to normal counting,
+ * with the usual order by magnitude; the novelty here is that
+ * we instead use the lexicographic order on decimal representations.
+ * It is also the case that
+ * the numbers are in order by magnitude, although we do not
+ * use this property.
+ *
+ * The specific enumeration is:
+ * - Start with 0.
+ * - Enumerate 9^0 numbers (i.e., just 0).
+ * - Add 1, multiply by 10, then enumerate 9^1 numbers (i.e.,
+ * 10, 11, ..., 18).
+ * - Add 1, multiply by 10, then enumerate 9^2 numbers (i.e.,
+ * 190, 191, ..., 270).
+ * - Repeat this pattern indefinitely, enumerating
+ * 9^(d-1) d-digit numbers for each d >= 1.
+ */
+function lexSucc(n: number): number {
+  const d = n === 0 ? 1 : Math.floor(Math.log10(n)) + 1;
+  if (n === Math.pow(10, d) - Math.pow(9, d) - 1) {
+    // n -> (n + 1) * 10
+    return (n + 1) * 10;
+  } else {
+    // n -> n + 1
+    return n + 1;
   }
 }
