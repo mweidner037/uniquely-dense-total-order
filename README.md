@@ -8,4 +8,4 @@ This repo is a companion to the blog post [Plain Tree: A Basic List CRDT](https:
 
 ## Docs
 
-Open [typedoc/index.html](tree/master/typedoc/index.html).
+Open [typedoc/index.html](typedoc/index.html).
