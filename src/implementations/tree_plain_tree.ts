@@ -178,7 +178,10 @@ export class TreePlainTree implements UniquelyDenseTotalOrder<TreePosition> {
       parent:
         newIntPos.parent === null
           ? null
-          : { sender: newIntPos.sender, counter: newIntPos.counter },
+          : {
+              sender: newIntPos.parent.sender,
+              counter: newIntPos.parent.counter,
+            },
       leftChild: newIntPos.leftChild,
     };
     this.send(JSON.stringify(message));

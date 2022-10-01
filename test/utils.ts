@@ -40,3 +40,10 @@ export function assertIsOrdered<P>(
     }
   }
 }
+
+export function assertIsOrderedAll<P>(
+  orders: UniquelyDenseTotalOrder<P>[],
+  list: P[]
+) {
+  orders.forEach((order) => assertIsOrdered(order, list));
+}
