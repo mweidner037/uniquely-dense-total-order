@@ -2,12 +2,12 @@ import { LexUDTotalOrder } from "../lex_ud_total_order";
 import { randomReplicaID } from "../utils";
 
 /**
- * An optimized version of [[StringPlainTree]].
+ * An optimized version of [[StringFugue]].
  *
  * For a description of the algorithm, see
  * [https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation](https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation)
  *
- * The difference from [[StringPlainTree]] (the linked algorithm)
+ * The difference from [[StringFugue]] (the linked algorithm)
  * is a common-case optimization: left-to-right insertions
  * by the same replica reuse the same (replicaID, counter)
  * pair (we call this a _waypoint_), just using
@@ -46,7 +46,7 @@ import { randomReplicaID } from "../utils";
  * to ensure that a terminal node is sorted in between its
  * left and right children).
  */
-export class OptStringPlainTree extends LexUDTotalOrder {
+export class OptStringFugue extends LexUDTotalOrder {
   /**
    * Local replica ID, set in constructor.
    * All replicaIDs have the same length.

@@ -2,17 +2,17 @@ import { LexUDTotalOrder } from "../lex_ud_total_order";
 import { randomReplicaID } from "../utils";
 
 /**
- * A code golf version of [[StringPlainTree]].
+ * A code golf version of [[StringFugue]].
  *
- * Its positions are the same as those of [[StringPlainTree]]
+ * Its positions are the same as those of [[StringFugue]]
  * except that they all start with an extra "R".
- * This implementation is just for code golf; [[StringPlainTree]]
+ * This implementation is just for code golf; [[StringFugue]]
  * has clearer code and 1-character-shorter positions.
  *
  * For a description of the algorithm, see
  * [https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation](https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation)
  */
-export class GolfStringPlainTree extends LexUDTotalOrder {
+export class GolfStringFugue extends LexUDTotalOrder {
   readonly id: string;
   private c = 0;
 

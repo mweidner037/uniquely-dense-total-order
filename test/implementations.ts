@@ -1,27 +1,27 @@
-import { GroupFactory } from "./utils";
-import { pseudoRandomReplicaID } from "../src/utils";
 import {
-  GolfStringPlainTree,
-  OptStringPlainTree,
-  StringPlainTree,
-  TreePlainTree,
+  GolfStringFugue,
+  OptStringFugue,
+  StringFugue,
+  TreeFugue,
 } from "../src/implementations";
+import { pseudoRandomReplicaID } from "../src/utils";
+import { GroupFactory } from "./utils";
 
 export const IMPLEMENTATIONS: { [name: string]: GroupFactory<unknown> } = {
-  GolfStringPlainTree: () => (rng) =>
-    new GolfStringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
-  OptStringPlainTree: () => (rng) =>
-    new OptStringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
-  StringPlainTree: () => (rng) =>
-    new StringPlainTree({ replicaID: pseudoRandomReplicaID(rng) }),
-  TreePlainTree: () => {
-    const replicas: TreePlainTree[] = [];
+  GolfStringFugue: () => (rng) =>
+    new GolfStringFugue({ replicaID: pseudoRandomReplicaID(rng) }),
+  OptStringFugue: () => (rng) =>
+    new OptStringFugue({ replicaID: pseudoRandomReplicaID(rng) }),
+  StringFugue: () => (rng) =>
+    new StringFugue({ replicaID: pseudoRandomReplicaID(rng) }),
+  TreeFugue: () => {
+    const replicas: TreeFugue[] = [];
     // send function: immediate in-order broadcast.
     function send(message: string) {
       replicas.forEach((replica) => replica.receive(message));
     }
     return function (rng) {
-      const replica = new TreePlainTree(send, {
+      const replica = new TreeFugue(send, {
         replicaID: pseudoRandomReplicaID(rng),
       });
       replicas.push(replica);

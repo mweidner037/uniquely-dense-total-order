@@ -25,12 +25,12 @@ interface NewPositionMessage {
 }
 
 /**
- * A simple [[UniquelyDenseTotalOrder]] implementing the Plain Tree algorithm.
+ * A simple [[UniquelyDenseTotalOrder]] implementing the Fugue algorithm.
  *
  * For a description of the algorithm, see
  * [https://mattweidner.com/2022/10/05/basic-list-crdt.html#tree-implementation](https://mattweidner.com/2022/10/05/basic-list-crdt.html#tree-implementation)
  */
-export class TreePlainTree implements UniquelyDenseTotalOrder<TreePosition> {
+export class TreeFugue implements UniquelyDenseTotalOrder<TreePosition> {
   /**
    * Local replica ID, set in constructor.
    */
@@ -117,7 +117,7 @@ export class TreePlainTree implements UniquelyDenseTotalOrder<TreePosition> {
     a: TreePosition | undefined,
     b: TreePosition | undefined
   ): TreePosition {
-    // Determine where to place newPos in the tree, following Plain Tree alg:
+    // Determine where to place newPos in the tree, following Fugue alg:
     // - If a is *not* an ancestor of b, newPos is a right child of a.
     // - Else, newPos is a left child of b.
     let isAnc = false;

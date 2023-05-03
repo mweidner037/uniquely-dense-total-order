@@ -1,12 +1,12 @@
 import seedrandom from "seedrandom";
 import { UniquelyDenseTotalOrder } from "../src/uniquely_dense_total_order";
+import { IMPLEMENTATIONS } from "./implementations";
 import {
   assertIsOrdered,
   assertIsOrderedAll,
   GroupFactory,
   safeCreateBetween,
 } from "./utils";
-import { IMPLEMENTATIONS } from "./implementations";
 
 for (const [name, newGroup] of Object.entries(IMPLEMENTATIONS)) {
   describe(name, () => {

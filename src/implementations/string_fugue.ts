@@ -2,12 +2,12 @@ import { LexUDTotalOrder } from "../lex_ud_total_order";
 import { randomReplicaID } from "../utils";
 
 /**
- * A simple [[LexUDTotalOrder]] implementing the Plain Tree algorithm.
+ * A simple [[LexUDTotalOrder]] implementing the Fugue algorithm.
  *
  * For a description of the algorithm, see
  * [https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation](https://mattweidner.com/2022/10/05/basic-list-crdt.html#intro-string-implementation)
  */
-export class StringPlainTree extends LexUDTotalOrder {
+export class StringFugue extends LexUDTotalOrder {
   /**
    * Local replica ID, set in constructor.
    * All replicaIDs have the same length.
